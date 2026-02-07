@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RestController
 @RequestMapping ("/api/empleados")
 
@@ -29,6 +31,21 @@ public class EmpleadoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping ("/{id}")
+    public ResponseEntity<Object> updateEmpleado(
+            @PathVariable Integer id,
+            @Valid @RequestBody Empleado empleado) {
+
+        try {
+            Empleado updEmpleado = empleadoService.updateEmpleado(id, empleado);
+            return ResponseEntity.ok(updEmpleado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+
 }
 
 
