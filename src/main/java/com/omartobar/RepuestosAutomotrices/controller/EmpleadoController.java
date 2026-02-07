@@ -44,7 +44,15 @@ public class EmpleadoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<Object> deleteEmpleado(@PathVariable Integer id) {
+        try {
+            empleadoService.deleteEmpleado(id);
+            return ResponseEntity.ok("Empleado eliminado correctamente");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empleado no encontrado");
+        }
+    }
 
 }
 
