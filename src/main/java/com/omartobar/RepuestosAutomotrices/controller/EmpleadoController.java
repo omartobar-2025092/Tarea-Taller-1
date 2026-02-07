@@ -39,7 +39,7 @@ public class EmpleadoController {
 
         try {
             Empleado updEmpleado = empleadoService.updateEmpleado(id, empleado);
-            return ResponseEntity.ok(updEmpleado);
+            return ResponseEntity.ok(updEmpleado + "Empleado actualizado correctamente");
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
