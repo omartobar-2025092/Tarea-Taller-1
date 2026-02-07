@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "bf9c5477-3b59-49c8-a5ef-8023da638406",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Empleados",
+      "id": "cc11eed7-4f77-4dfc-862b-5767eff5c872",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/empleados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Agregar Empleado",
+      "id": "6a515e69-5758-4e5d-91e6-46c22da49490",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombreEmpleado\":\"Fernanda\",\r\n    \"apellidoEmpleado\":\"Pulex\",\r\n    \"puestoEmpleado\":\"Gerente\",\r\n    \"emailEmpleado\":\"fernandaese@gmail.com\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/empleados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Empleado",
+      "id": "71ad5655-ee32-44e4-a4d8-05e4e13730a4",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/empleados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Editar Empleado",
+      "id": "510f40ea-5fc4-46c8-ac55-b2d7fa96d214",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"apellidoEmpleado\": \"Scrarcher\",\r\n        \"emailEmpleado\": \"Scrarcher.ramirez@empresa.com\",\r\n        \"idEmpleado\": 5,\r\n        \"nombreEmpleado\": \"Ramirez\",\r\n        \"puestoEmpleado\": \"Gerente\"\r\n    }"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/empleados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
