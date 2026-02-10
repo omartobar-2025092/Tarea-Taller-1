@@ -1,4 +1,4 @@
-package com.omartobar.RepuestosAutomotrices.model;
+package com.omartobar.RepuestosAutomotrices.entity;
 
 import jakarta.persistence.*;
 

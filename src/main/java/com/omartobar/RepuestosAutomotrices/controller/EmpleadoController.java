@@ -1,6 +1,6 @@
 package com.omartobar.RepuestosAutomotrices.controller;
 
-import com.omartobar.RepuestosAutomotrices.model.Empleado;
+import com.omartobar.RepuestosAutomotrices.entity.Empleado;
 import com.omartobar.RepuestosAutomotrices.service.EmpleadoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -8,9 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping ("/api/empleados")

@@ -1,6 +1,6 @@
 package com.omartobar.RepuestosAutomotrices.service;
 
-import com.omartobar.RepuestosAutomotrices.model.Empleado;
+import com.omartobar.RepuestosAutomotrices.entity.Empleado;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
