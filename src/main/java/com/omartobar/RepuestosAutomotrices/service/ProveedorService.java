@@ -1,6 +1,7 @@
 package com.omartobar.RepuestosAutomotrices.service;
 
 import com.omartobar.RepuestosAutomotrices.entity.Proveedor;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
