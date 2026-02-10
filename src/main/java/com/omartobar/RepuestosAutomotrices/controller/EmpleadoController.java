@@ -35,10 +35,10 @@ public class EmpleadoController {
             @Valid @RequestBody Empleado empleado) {
 
         try {
-            Empleado updEmpleado = empleadoService.updateEmpleado(id, empleado);
-            return ResponseEntity.ok(updEmpleado + "Empleado actualizado correctamente");
+            empleadoService.updateEmpleado(id, empleado);
+            return ResponseEntity.ok("Empleado actualizado correctamente");
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empleado no encontrado");
         }
     }
     @DeleteMapping ("/{id}")
