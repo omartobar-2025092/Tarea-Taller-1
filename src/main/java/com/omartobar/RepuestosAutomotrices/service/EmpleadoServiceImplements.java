@@ -2,9 +2,11 @@ package com.omartobar.RepuestosAutomotrices.service;
 
 import com.omartobar.RepuestosAutomotrices.entity.Empleado;
 import com.omartobar.RepuestosAutomotrices.repository.EmpleadoRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpleadoServiceImplements implements  EmpleadoService{
@@ -32,7 +34,17 @@ public class EmpleadoServiceImplements implements  EmpleadoService{
 
     @Override
     public Empleado updateEmpleado(Integer id, Empleado empleado) {
-        return null;
+        Optional<Empleado> empleadoExistente = empleadoRepository.findById(id);
+        if (empleadoExistente.isPresent()){
+            Empleado newEmpleado = empleadoExistente.get();
+            newEmpleado.setApellidoEmpleado(empleado.getApellidoEmpleado());
+            newEmpleado.setEmailEmpleado(empleado.getEmailEmpleado());
+            newEmpleado.setNombreEmpleado(empleado.getNombreEmpleado());
+            newEmpleado.setPuestoEmpleado(empleado.getPuestoEmpleado());
+        return empleadoRepository.save(newEmpleado);
+        }else{
+            return null;
+        }
     }
 
     @Override
