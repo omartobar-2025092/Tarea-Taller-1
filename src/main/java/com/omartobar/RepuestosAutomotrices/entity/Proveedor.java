@@ -3,8 +3,8 @@ package com.omartobar.RepuestosAutomotrices.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "Proveedores")
-public class Proveedores {
+@Table (name = "Proveedor")
+public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
