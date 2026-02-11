@@ -1,5 +1,6 @@
 package com.omartobar.RepuestosAutomotrices.controller;
 
+import com.omartobar.RepuestosAutomotrices.entity.Empleado;
 import com.omartobar.RepuestosAutomotrices.entity.Proveedor;
 import com.omartobar.RepuestosAutomotrices.service.ProveedorService;
 import jakarta.validation.Valid;
@@ -19,7 +20,17 @@ public class ProveedorController {
     public ProveedorController(ProveedorService proveedorService) {this.proveedorService = proveedorService;}
 
     @GetMapping
-    public List<Proveedor> getAllProveedores(){return proveedorService.getallProveedores();}
+    public List<Proveedor> getallProveedores(){return proveedorService.getallProveedores();}
+
+    @GetMapping ("/{id}")
+    public  ResponseEntity<Object>  getAllProveedorById(Integer id){
+        try {
+            Proveedor proveedorSolicitado = proveedorService.getAllProveedorById(id);
+            return new ResponseEntity<>(proveedorSolicitado, HttpStatus.ACCEPTED);
+        }catch (IllegalArgumentException e){
+            return  ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Object> createProveedor(@Valid @RequestBody Proveedor proveedor){
