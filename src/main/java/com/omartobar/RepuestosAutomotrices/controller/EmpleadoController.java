@@ -2,6 +2,7 @@ package com.omartobar.RepuestosAutomotrices.controller;
 
 import com.omartobar.RepuestosAutomotrices.entity.Empleado;
 import com.omartobar.RepuestosAutomotrices.service.EmpleadoService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,16 @@ public class EmpleadoController {
     }
     @GetMapping
     public List<Empleado> getAllEmpleados(){return empleadoService.getAllEmpleados();}
+
+    @GetMapping
+    public ResponseEntity<Object> getEmpleadoById(Integer id){
+        try{
+        Empleado empleadoSolicitado = empleadoService.getEmpleadoById(id);
+        return new ResponseEntity<>(empleadoSolicitado , HttpStatus.ACCEPTED);
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Object> createEmpleado(@Valid @RequestBody Empleado empleado){
