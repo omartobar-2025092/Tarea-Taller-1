@@ -20,7 +20,7 @@ public class EmpleadoController {
     @GetMapping
     public List<Empleado> getAllEmpleados(){return empleadoService.getAllEmpleados();}
 
-    @GetMapping
+    @GetMapping ("/{id}")
     public ResponseEntity<Object> getEmpleadoById(Integer id){
         try{
         Empleado empleadoSolicitado = empleadoService.getEmpleadoById(id);
