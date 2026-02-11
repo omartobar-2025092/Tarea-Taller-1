@@ -3,24 +3,24 @@ package com.omartobar.RepuestosAutomotrices.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "Proveedor")
+@Table (name = "Proveedores")
 public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "idProveedor")
+    @Column (name = "id_Proveedor")
     private Integer idProovedor;
 
-    @Column (name = "nombreProveedor")
+    @Column (name = "nombre_proveedor")
     private String nombreProveedor;
 
-    @Column (name = "telefonoProveedor")
+    @Column (name = "telefono_proveedor")
     private String telefonoProveedor;
 
-    @Column (name = "direccionProveedor")
+    @Column (name = "direccion_proveedor")
     private String direccionProveedor;
 
-    @Column (name = "emailProveedor")
+    @Column (name = "email_proveedor")
     private String emailProveedor;
 
 
