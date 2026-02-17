@@ -140,82 +140,22 @@ CALL sp_crear_proveedor ("AutoComponentes GT", "3088-9900", "Zona 7, Mixco", "in
 CALL sp_crear_proveedor ("Partes Premium", "3099-1010", "Zona 10, Guatemala", "premium@partes.com");
 CALL sp_crear_proveedor ("Repuestos del Sur", "3101-2020", "Zona 1, Mazatenango", "ventas@delsur.com");
 
-CREATE TABLE Categorias(
-    idCategoria INT NOT NULL AUTO_INCREMENT,
-    nombreCategoria VARCHAR(100) NOT NULL,
-    descripcionCategoria TEXT NOT NULL,
-    PRIMARY KEY (idCategoria)
-);
-
-DELIMITER $$
-CREATE PROCEDURE sp_listar_categorias()
-BEGIN
-    SELECT * FROM Categorias;
-END $$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE sp_crear_categoria(
-    IN c_nombreCategoria VARCHAR(100),
-    IN c_descripcionCategoria TEXT
-)
-BEGIN
-    INSERT INTO Categorias VALUES (NULL, c_nombreCategoria, c_descripcionCategoria);
-END $$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE sp_actualizar_categoria(
-    IN c_idCategoria INT,
-    IN c_nombreCategoria VARCHAR(100),
-    IN c_descripcionCategoria TEXT
-)
-BEGIN
-    UPDATE Categorias
-    SET nombreCategoria = c_nombreCategoria,
-        descripcionCategoria = c_descripcionCategoria
-    WHERE idCategoria = c_idCategoria;
-END $$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE sp_eliminar_categoria(IN c_idCategoria INT)
-BEGIN
-    DELETE FROM Categorias WHERE idCategoria = c_idCategoria;
-END $$
-DELIMITER ;
-
-CALL sp_crear_categoria ("Aceites", "Lubricantes para motor y transmisión");
-CALL sp_crear_categoria ("Encendido", "Componentes del sistema de encendido");
-CALL sp_crear_categoria ("Carrocería", "Piezas externas del vehículo");
-CALL sp_crear_categoria ("Clutch", "Componentes del sistema de embrague");
-CALL sp_crear_categoria ("Combustible", "Sistema de alimentación de combustible");
-CALL sp_crear_categoria ("Enfriamiento", "Control de temperatura del motor");
-CALL sp_crear_categoria ("Rodamiento", "Balineras y rodamientos");
-CALL sp_crear_categoria ("Suspensión", "Control de estabilidad del vehículo");
-CALL sp_crear_categoria ("Iluminación", "Sistema de luces");
-CALL sp_crear_categoria ("Mantenimiento", "Repuestos de servicio básico");
-
-
 CREATE TABLE Repuestos(
-    idRepuesto INT NOT NULL AUTO_INCREMENT,
+    idRepuesto INT NOT NULL  AUTO_INCREMENT,
     nombreRepuesto VARCHAR(100) NOT NULL,
     descripcionRepuesto TEXT NOT NULL,
     precioRepuesto DECIMAL(8,2) NOT NULL,
     stockRepuesto INT NOT NULL,
-    idCategoria INT NOT NULL,
     idProveedor INT NOT NULL,
     PRIMARY KEY (idRepuesto),
-    FOREIGN KEY (idCategoria) REFERENCES Categorias(idCategoria),
     FOREIGN KEY (idProveedor) REFERENCES Proveedores(idProveedor)
 );
 
 DELIMITER $$
 CREATE PROCEDURE sp_ListarRepuestos()
 BEGIN
-    SELECT r.*, c.nombreCategoria, p.nombreProveedor
+    SELECT r.*, p.nombreProveedor
     FROM Repuestos r
-    JOIN Categorias c ON r.idCategoria = c.idCategoria
     JOIN Proveedores p ON r.idProveedor = p.idProveedor;
 END $$
 DELIMITER ;
@@ -226,11 +166,10 @@ CREATE PROCEDURE sp_CrearRepuesto(
     IN r_descripcionRepuesto TEXT,
     IN r_precioRepuesto DECIMAL(8,2),
     IN r_stockRepuesto INT,
-    IN r_idCategoria INT,
     IN r_idProveedor INT
 )
 BEGIN
-    INSERT INTO Repuestos VALUES (NULL, r_nombreRepuesto, r_descripcionRepuesto, r_precioRepuesto, r_stockRepuesto, r_idCategoria, r_idProveedor);
+    INSERT INTO Repuestos VALUES (NULL, r_nombreRepuesto, r_descripcionRepuesto, r_precioRepuesto, r_stockRepuesto, r_idProveedor);
 END $$
 DELIMITER ;
 
@@ -241,7 +180,6 @@ CREATE PROCEDURE sp_ActualizarRepuesto(
     IN r_descripcionRepuesto TEXT,
     IN r_precioRepuesto DECIMAL(8,2),
     IN r_stockRepuesto INT,
-    IN r_idCategoria INT,
     IN r_idProveedor INT
 )
 BEGIN
@@ -250,7 +188,6 @@ BEGIN
         descripcionRepuesto = r_descripcionRepuesto,
         precioRepuesto = r_precioRepuesto,
         stockRepuesto = r_stockRepuesto,
-        idCategoria = r_idCategoria,
         idProveedor = r_idProveedor
     WHERE idRepuesto = r_idRepuesto;
 END $$
@@ -264,16 +201,16 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL sp_CrearRepuesto ("Aceite_10W40", "Aceite semisintético", 180.00, 50, 1, 1);
-CALL sp_CrearRepuesto ("Bobina de Encendido", "Bobina para motor 4 cilindros", 320.00, 25, 2, 2);
-CALL sp_CrearRepuesto ("Parachoques Delantero", "Parachoques plástico", 950.00, 10, 3, 3);
-CALL sp_CrearRepuesto ("Kit de Clutch", "Clutch completo", 1250.00, 8, 4, 4);
-CALL sp_CrearRepuesto ("Bomba de Gasolina", "Bomba eléctrica", 480.00, 20, 5, 5);
-CALL sp_CrearRepuesto ("Radiador", "Radiador de aluminio", 1100.00, 7, 6, 6);
-CALL sp_CrearRepuesto ("Balineras", "Juego de balineras", 260.00, 40, 7, 7);
-CALL sp_CrearRepuesto ("Amortiguador Trasero", "Amortiguador derecho", 720.00, 15, 8, 8);
-CALL sp_CrearRepuesto ("Luz Trasera", "Luz LED izquierda", 390.00, 18, 9, 9);
-CALL sp_CrearRepuesto ("Filtro de Aire", "Filtro de aire estándar", 85.00, 60, 10, 10);
+CALL sp_CrearRepuesto ("Aceite_10W40", "Aceite semisintético", 180.00,1, 1);
+CALL sp_CrearRepuesto ("Bobina de Encendido", "Bobina para motor 4 cilindros", 320.00,2, 2);
+CALL sp_CrearRepuesto ("Parachoques Delantero", "Parachoques plástico", 950.00,3, 3);
+CALL sp_CrearRepuesto ("Kit de Clutch", "Clutch completo", 1250.00,4, 4);
+CALL sp_CrearRepuesto ("Bomba de Gasolina", "Bomba eléctrica", 480.00,5, 5);
+CALL sp_CrearRepuesto ("Radiador", "Radiador de aluminio", 1100.00,6, 6);
+CALL sp_CrearRepuesto ("Balineras", "Juego de balineras", 260.00,7, 7);
+CALL sp_CrearRepuesto ("Amortiguador Trasero", "Amortiguador derecho", 720.00,8, 8);
+CALL sp_CrearRepuesto ("Luz Trasera", "Luz LED izquierda", 390.00,9, 9);
+CALL sp_CrearRepuesto ("Filtro de Aire", "Filtro de aire estándar", 85.00, 10, 10);
 
 CREATE TABLE Ventas(
     idVenta INT NOT NULL AUTO_INCREMENT,
