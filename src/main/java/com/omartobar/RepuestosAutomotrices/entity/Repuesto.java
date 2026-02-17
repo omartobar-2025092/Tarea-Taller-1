@@ -1,48 +1,71 @@
 package com.omartobar.RepuestosAutomotrices.entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Categorias")
+@Table(name = "Repuestos")
 
 public class Repuesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCategoria")
-    private Integer idCategoria;
+    @Column(name = "idRepuesto")
+    private Integer idRepuesto;
 
-    @Column(name = "nombreCategoria", nullable = false, length = 100)
-    private String nombreCategoria;
+    @Column(name = "nombreRepuesto", nullable = false, length = 100)
+    private String nombreRepuesto;
 
-    @Column(name = "descripcionCategoria", nullable = false, columnDefinition = "TEXT")
-    private String descripcionCategoria;
+    @Column(name = "descripcionRepuesto", nullable = false, columnDefinition = "TEXT")
+    private String descripcionRepuesto;
 
+    @Column(name = "precioRepuesto", nullable = false, precision = 8, scale = 2)
+    private BigDecimal precioRepuesto;
+
+    @Column(name = "stockRepuesto", nullable = false)
+    private Integer stockRepuesto;
 
     // Getters y Setters //
 
-    public Integer getIdCategoria() {
-        return idCategoria;
+    public Integer getIdRepuesto() {
+        return idRepuesto;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdRepuesto(Integer idRepuesto) {
+        this.idRepuesto = idRepuesto;
     }
 
-    public String getNombreCategoria() {
-        return nombreCategoria;
+    public String getNombreRepuesto() {
+        return nombreRepuesto;
     }
 
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+    public void setNombreRepuesto(String nombreRepuesto) {
+        this.nombreRepuesto = nombreRepuesto;
     }
 
-    public String getDescripcionCategoria() {
-        return descripcionCategoria;
+    public String getDescripcionRepuesto() {
+        return descripcionRepuesto;
     }
 
-    public void setDescripcionCategoria(String descripcionCategoria) {
-        this.descripcionCategoria = descripcionCategoria;
+    public void setDescripcionRepuesto(String descripcionRepuesto) {
+        this.descripcionRepuesto = descripcionRepuesto;
+    }
+
+    public BigDecimal getPrecioRepuesto() {
+        return precioRepuesto;
+    }
+
+    public void setPrecioRepuesto(BigDecimal precioRepuesto) {
+        this.precioRepuesto = precioRepuesto;
+    }
+
+    public Integer getStockRepuesto() {
+        return stockRepuesto;
+    }
+
+    public void setStockRepuesto(Integer stockRepuesto) {
+        this.stockRepuesto = stockRepuesto;
     }
 }
+
 
