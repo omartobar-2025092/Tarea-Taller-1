@@ -37,9 +37,11 @@ public class RepuestoServiceImplements implements RepuestoService{
         Optional<Repuesto> repuestoExistente = repuestoRepository.findById(id);
         if (repuestoExistente.isPresent()){
             Repuesto newRepuesto = repuestoExistente.get();
-            newRepuesto.setIdCategoria(repuesto.getIdCategoria());
-            newRepuesto.setDescripcionCategoria(repuesto.getDescripcionCategoria());
-            newRepuesto.setNombreCategoria(repuesto.getNombreCategoria());
+            newRepuesto.setIdRepuesto(repuesto.getIdRepuesto());
+            newRepuesto.setPrecioRepuesto(repuesto.getPrecioRepuesto());
+            newRepuesto.setDescripcionRepuesto(repuesto.getDescripcionRepuesto());
+            newRepuesto.setStockRepuesto(repuesto.getStockRepuesto());
+            newRepuesto.setNombreRepuesto(repuesto.getNombreRepuesto());
             return repuestoRepository.save(newRepuesto);
         }else{
             return null;
